@@ -25,48 +25,24 @@ def place_order(menu):
     menu_items = get_menu_items_dict(menu)
 
     # Launch the store and present a greeting to the customer
-    print("Welcome to the Generic Take Out Restaurant.")
-
-    # TODO: Create a continuous while loop so customers can order multiple items
-
-        # TODO: Ask the customer what they want to order
-
-
-        # Create a variable for the menu item number
+    print("Welcome to the Restaurant Takeout Ordering.")
+    print("What would you like today? ")
+    select_order = True
+    while select_order:
         i = 1
-
-        # Print the menu header
         print_menu_heading()
-
-        # TODO: Loop through the menu dictionary
-        # TODO: Extract the food category and the options for each category
-
-            # TODO: Loop through the options for each food category
-            # TODO: Extract the meal and the price for each option
-
-                # Print the menu item number, food category, meal, and price
-                # TODO: Only if you used different variable names
-                # TODO: Update the variable names in the following function
+        for food_category, options in menu.items():
+            for meal, price in options.items():
                 print_menu_line(i, food_category, meal, price)
-
-                # Update the menu selection number
                 i += 1
 
-        # TODO: Ask customer to input menu item number
-
-
-        # TODO: Update the order list using the update_order function
-        # TODO: Send the order list, menu selection, and menu items as arguments
-
-
-        # TODO: Ask the customer if they would like to order anything else
-        # TODO: Let the customer know if they should type 'n' or 'N' to quit
-
-
-        # TODO: Write a conditional statement that checks the user's input
-        # TODO: The conditional statement should check for 'n' or 'N'
-
-            # TODO: Write a print statement that thanks the customer for their order
+        menu_selection = input(
+            "Please enter the item number you would like to order: ")
+        order = update_order(order, menu_selection, menu_items)
+        continue_order = input(
+            "Would you like to order anything else? (y/n): ")
+        if continue_order == 'n' or continue_order == 'N':
+            print("Thank you for ordering with us!")
 
 
             # TODO: Use list comprehension to create a list called prices_list,
