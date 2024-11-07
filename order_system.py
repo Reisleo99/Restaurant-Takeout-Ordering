@@ -25,8 +25,8 @@ def place_order(menu):
     menu_items = get_menu_items_dict(menu)
 
     # Launch the store and present a greeting to the customer
-    print("Welcome to the Restaurant Takeout Ordering.")
-    print("What would you like today? ")
+    print("Welcome to the Generic Take Out Restaurant.")
+    print("What would you like to order? ")
     select_order = True
     while select_order:
         i = 1
@@ -37,12 +37,12 @@ def place_order(menu):
                 i += 1
 
         menu_selection = input(
-            "Please enter the item number you would like to order: ")
+            "Type menu number: ")
         order = update_order(order, menu_selection, menu_items)
         continue_order = input(
-            "Would you like to order anything else? (y/n): ")
+            "Would you like to keep ordering? (N) to quit: ")
         if continue_order == 'n' or continue_order == 'N':
-            print("Thank you for ordering with us!")
+            print("Thank you for your order.")
 
             prices_list = [item["Price"] * item["Quantity"] for item in order]
 
@@ -72,7 +72,7 @@ def update_order(order, menu_selection, menu_items):
     """
     # Check if the customer typed a number
     if not menu_selection.isdigit():
-        print(f"Invalid input: {menu_selection} is not a number.")
+        print(f"Invalid input: {menu_selection} was not a menu option.")
     else:
         # Convert the menu selection to an integer
         menu_selection = int(menu_selection)
@@ -83,7 +83,7 @@ def update_order(order, menu_selection, menu_items):
             item_name = menu_items[menu_selection]["Item name"]
 
             # Ask the customer for the quantity of the menu item
-            quantity = input(f"How many {item_name} would you like to order? ")
+            quantity = input(f'What quantity of {item_name} would you like? \n(This will default to 1 if number is not entered)\n')
             # Use the item name variable in the question
             # Check if the quantity is a number, default to 1 if not
             try:
@@ -100,7 +100,8 @@ def update_order(order, menu_selection, menu_items):
                 "Price": menu_items[menu_selection]["Price"],
                 "Quantity": quantity
             })
-        return order
+
+    return order
 
 
 def print_itemized_receipt(receipt):
